@@ -6,18 +6,33 @@ moveDown = False
 moveRight = False
 moveLeft = False
 
-turtle.addshape("ProgramFiles\\Character\\Colin\\Up\\Colin-up.gif")
-turtle.addshape("ProgramFiles\\Character\\Colin\\Up\\Colin-up-01.gif")
-turtle.addshape("ProgramFiles\\Character\\Colin\\Up\\Colin-up-02.gif")
-turtle.addshape("ProgramFiles\\Character\\Colin\\Down\\Colin-Down.gif")
-turtle.addshape("ProgramFiles\\Character\\Colin\\Down\\Colin-Down-01.gif")
-turtle.addshape("ProgramFiles\\Character\\Colin\\Down\\Colin-Down-02.gif")
-turtle.addshape("ProgramFiles\\Character\\Colin\\Right\\Colin-Right.gif")
-turtle.addshape("ProgramFiles\\Character\\Colin\\Right\\Colin-Right-01.gif")
-turtle.addshape("ProgramFiles\\Character\\Colin\\Right\\Colin-Right-02.gif")
-turtle.addshape("ProgramFiles\\Character\\Colin\\Left\\Colin-Left.gif")
-turtle.addshape("ProgramFiles\\Character\\Colin\\Left\\Colin-left-01.gif")
-turtle.addshape("ProgramFiles\\Character\\Colin\\Left\\Colin-left-02.gif")
+COLIN_PATH = "Characters\\Colin\\"
+COLIN_IDLE_UP = COLIN_PATH + "Colin-up.gif"
+COLIN_UP_01 = COLIN_PATH + "Colin-up-01.gif"
+COLIN_UP_02 = COLIN_PATH + "Colin-up-02.gif"
+COLIN_IDLE_DOWN = COLIN_PATH + "Colin-down.gif"
+COLIN_DOWN_01 = COLIN_PATH + "Colin-down-01.gif"
+COLIN_DOWN_02 = COLIN_PATH + "Colin-down-02.gif"
+COLIN_IDLE_RIGHT = COLIN_PATH + "Colin-Right.gif"
+COLIN_RIGHT_01 = COLIN_PATH + "Colin-Right-01.gif"
+COLIN_RIGHT_02 = COLIN_PATH + "Colin-Right-02.gif"
+COLIN_IDLE_lEFT = COLIN_PATH + "Colin-left.gif"
+COLIN_LEFT_01 = COLIN_PATH + "Colin-left-01.gif"
+COLIN_LEFT_02 = COLIN_PATH + "Colin-left-02.gif"
+
+
+turtle.addshape(COLIN_IDLE_UP)
+turtle.addshape(COLIN_UP_01)
+turtle.addshape(COLIN_UP_02)
+turtle.addshape(COLIN_IDLE_DOWN)
+turtle.addshape(COLIN_DOWN_01)
+turtle.addshape(COLIN_DOWN_02)
+turtle.addshape(COLIN_IDLE_RIGHT)
+turtle.addshape(COLIN_RIGHT_01)
+turtle.addshape(COLIN_RIGHT_02)
+turtle.addshape(COLIN_IDLE_lEFT)
+turtle.addshape(COLIN_LEFT_01)
+turtle.addshape(COLIN_LEFT_02)
 
 char = turtle.Turtle()
 turtle.delay(0)
@@ -26,9 +41,8 @@ charX = 0
 charY = 0
 camX = 0
 camY = 0
-char.shape("ProgramFiles\\Character\\Colin\\Down\\Colin-Down.gif")
+char.shape(COLIN_IDLE_DOWN)
 char.penup()
-
 
 def Update():
     global charX
@@ -38,57 +52,105 @@ def Update():
     global moveRight
     global moveLeft
     if moveUp:
-        for i in range(2):
-            for i in range(2):
-                char.shape("ProgramFiles\\Character\\Colin\\Up\\Colin-up-01.gif")
-                charY += step/5
-                char.goto(charX, charY)
-                time.sleep(0.06)
-            for i in range(2):
-                char.shape("ProgramFiles\\Character\\Colin\\Up\\Colin-up-02.gif")
-                charY += step/5
-                char.goto(charX, charY)
-                time.sleep(0.06)
-            char.shape("ProgramFiles\\Character\\Colin\\Up\\Colin-up.gif")
+        while moveUp:
+            if charY > 240:
+                for i in range(2):
+                    for i in range(2):
+                        char.shape()
+                        char.shape(COLIN_UP_01)
+                        char.goto(charX, charY)
+                        time.sleep(0.05)
+                    for i in range(2):
+                        char.shape(COLIN_UP_02)
+                        char.goto(charX, charY)
+                        time.sleep(0.05)
+            else:
+                 for i in range(2):
+                    for i in range(2):
+                        char.shape(COLIN_UP_01)
+                        charY += step/5
+                        char.goto(charX, charY)
+                        time.sleep(0.05)
+                    for i in range(2):
+                        char.shape(COLIN_UP_02)
+                        charY += step/5
+                        char.goto(charX, charY)
+                        time.sleep(0.05)
+        char.shape(COLIN_IDLE_UP)
     if moveDown:
-        for i in range(2):
-            for i in range(2):
-                char.shape("ProgramFiles\\Character\\Colin\\Down\\Colin-Down-01.gif")
-                charY -= step/5
-                char.goto(charX, charY)
-                time.sleep(0.06)
-            for i in range(2):
-                char.shape("ProgramFiles\\Character\\Colin\\Down\\Colin-Down-02.gif")
-                charY -= step/5
-                char.goto(charX, charY)
-                time.sleep(0.06)
-            char.shape("ProgramFiles\\Character\\Colin\\Down\\Colin-Down.gif")
+        while moveDown:
+            if charY < -240:
+                for i in range(2):
+                    for i in range(2):
+                        char.shape(COLIN_DOWN_01)
+                        char.goto(charX, charY)
+                        time.sleep(0.05)
+                    for i in range(2):
+                        char.shape(COLIN_DOWN_02)
+                        char.goto(charX, charY)
+                        time.sleep(0.05)
+            else:
+                for i in range(2):
+                    for i in range(2):
+                        char.shape(COLIN_DOWN_01)
+                        charY -= step/5
+                        char.goto(charX, charY)
+                        time.sleep(0.05)
+                    for i in range(2):
+                        char.shape(COLIN_DOWN_02)
+                        charY -= step/5
+                        char.goto(charX, charY)
+                        time.sleep(0.05)
+        char.shape(COLIN_IDLE_DOWN)
     if moveRight:
-        for i in range(2):
+        while moveRight:
             for i in range(2):
-                char.shape("ProgramFiles\\Character\\Colin\\Right\\Colin-Right-01.gif")
-                charX += step/5
-                char.goto(charX, charY)
-                time.sleep(0.06)
-            for i in range(2):
-                char.shape("ProgramFiles\\Character\\Colin\\Right\\Colin-Right-02.gif")
-                charX += step/5
-                char.goto(charX, charY)
-                time.sleep(0.05)
-        char.shape("ProgramFiles\\Character\\Colin\\Right\\Colin-Right.gif")
+                if charX > 240:
+                    for i in range(2):
+                        char.shape(COLIN_RIGHT_01)
+                        char.goto(charX, charY)
+                        time.sleep(0.05)
+                    for i in range(2):
+                        char.shape(COLIN_RIGHT_02)
+                        char.goto(charX, charY)
+                        time.sleep(0.05)
+                else:
+                    for i in range(2):
+                        char.shape(COLIN_RIGHT_01)
+                        charX += step/5
+                        char.goto(charX, charY)
+                        time.sleep(0.05)
+                    for i in range(2):
+                        char.shape(COLIN_RIGHT_02)
+                        charX += step/5
+                        char.goto(charX, charY)
+                        time.sleep(0.05)
+        char.shape(COLIN_IDLE_RIGHT)
     if moveLeft:
-        for i in range(2):
-            for i in range(2):
-                char.shape("ProgramFiles\\Character\\Colin\\Left\\Colin-left-01.gif")
-                charX -= step/5
-                char.goto(charX, charY)
-                time.sleep(0.05)
-            for i in range(2):
-                char.shape("ProgramFiles\\Character\\Colin\\Left\\Colin-left-02.gif")
-                charX -= step/5
-                char.goto(charX, charY)
-                time.sleep(0.05)
-        char.shape("ProgramFiles\\Character\\Colin\\Left\\Colin-Left.gif")
+        while moveLeft:
+            if charX < -240:
+                for i in range(2):
+                    for i in range(2):
+                        char.shape(COLIN_LEFT_01)
+                        char.goto(charX, charY)
+                        time.sleep(0.05)
+                    for i in range(2):
+                        char.shape(COLIN_LEFT_02)
+                        char.goto(charX, charY)
+                        time.sleep(0.05)
+            else:
+                for i in range(2):
+                    for i in range(2):
+                        char.shape(COLIN_LEFT_01)
+                        charX -= step/5
+                        char.goto(charX, charY)
+                        time.sleep(0.05)
+                    for i in range(2):
+                        char.shape(COLIN_LEFT_02)
+                        charX -= step/5
+                        char.goto(charX, charY)
+                        time.sleep(0.05)
+        char.shape(COLIN_IDLE_lEFT)
     char.clearstamps()
 
 def goUp():
@@ -117,11 +179,12 @@ def stopLeft():
     global moveLeft
     moveLeft = False
 
-def MoveCam(x, y):
+def moveCam(x, y, sec):
     global charX
     global charY
-    charX += x
-    charY += y
+    for i in range(sec):
+        charX -= x/sec
+        charY -= y/sec
 
 turtle.onkeypress(goUp, "Up")
 turtle.onkeypress(goDown, "Down")
