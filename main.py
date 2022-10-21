@@ -1,6 +1,24 @@
 import turtle
 import time
 
+moveUp = False
+moveDown = False
+moveRight = False
+moveLeft = False
+
+turtle.addshape("ProgramFiles\\Character\\Colin\\Up\\Colin-up.gif")
+turtle.addshape("ProgramFiles\\Character\\Colin\\Up\\Colin-up-01.gif")
+turtle.addshape("ProgramFiles\\Character\\Colin\\Up\\Colin-up-02.gif")
+turtle.addshape("ProgramFiles\\Character\\Colin\\Down\\Colin-Down.gif")
+turtle.addshape("ProgramFiles\\Character\\Colin\\Down\\Colin-Down-01.gif")
+turtle.addshape("ProgramFiles\\Character\\Colin\\Down\\Colin-Down-02.gif")
+turtle.addshape("ProgramFiles\\Character\\Colin\\Right\\Colin-Right.gif")
+turtle.addshape("ProgramFiles\\Character\\Colin\\Right\\Colin-Right-01.gif")
+turtle.addshape("ProgramFiles\\Character\\Colin\\Right\\Colin-Right-02.gif")
+turtle.addshape("ProgramFiles\\Character\\Colin\\Left\\Colin-Left.gif")
+turtle.addshape("ProgramFiles\\Character\\Colin\\Left\\Colin-left-01.gif")
+turtle.addshape("ProgramFiles\\Character\\Colin\\Left\\Colin-left-02.gif")
+
 char = turtle.Turtle()
 turtle.delay(0)
 step = 30
@@ -8,13 +26,9 @@ charX = 0
 charY = 0
 camX = 0
 camY = 0
-char.shape("square")
+char.shape("ProgramFiles\\Character\\Colin\\Down\\Colin-Down.gif")
 char.penup()
 
-moveUp = False
-moveDown = False
-moveRight = False
-moveLeft = False
 
 def Update():
     global charX
@@ -24,54 +38,58 @@ def Update():
     global moveRight
     global moveLeft
     if moveUp:
-        for i in range(5):
-            char.shape("circle")
-            charY += step/5
-            char.goto(charX, charY)
-            time.sleep(0.05)
-        if moveUp:
-            for i in range(5):
-                char.shape("triangle")
+        for i in range(2):
+            for i in range(2):
+                char.shape("ProgramFiles\\Character\\Colin\\Up\\Colin-up-01.gif")
                 charY += step/5
                 char.goto(charX, charY)
-                time.sleep(0.05)
+                time.sleep(0.06)
+            for i in range(2):
+                char.shape("ProgramFiles\\Character\\Colin\\Up\\Colin-up-02.gif")
+                charY += step/5
+                char.goto(charX, charY)
+                time.sleep(0.06)
+            char.shape("ProgramFiles\\Character\\Colin\\Up\\Colin-up.gif")
     if moveDown:
-        for i in range(5):
-            char.shape("circle")
-            charY -= step/5
-            char.goto(charX, charY)
-            time.sleep(0.05)
-        if moveDown:
-            for i in range(5):
-                char.shape("triangle")
+        for i in range(2):
+            for i in range(2):
+                char.shape("ProgramFiles\\Character\\Colin\\Down\\Colin-Down-01.gif")
                 charY -= step/5
                 char.goto(charX, charY)
-                time.sleep(0.05)
+                time.sleep(0.06)
+            for i in range(2):
+                char.shape("ProgramFiles\\Character\\Colin\\Down\\Colin-Down-02.gif")
+                charY -= step/5
+                char.goto(charX, charY)
+                time.sleep(0.06)
+            char.shape("ProgramFiles\\Character\\Colin\\Down\\Colin-Down.gif")
     if moveRight:
-        for i in range(5):
-            char.shape("circle")
-            charX += step/5
-            char.goto(charX, charY)
-            time.sleep(0.05)
-        if moveRight:
-            for i in range(5):
-                char.shape("triangle")
+        for i in range(2):
+            for i in range(2):
+                char.shape("ProgramFiles\\Character\\Colin\\Right\\Colin-Right-01.gif")
+                charX += step/5
+                char.goto(charX, charY)
+                time.sleep(0.06)
+            for i in range(2):
+                char.shape("ProgramFiles\\Character\\Colin\\Right\\Colin-Right-02.gif")
                 charX += step/5
                 char.goto(charX, charY)
                 time.sleep(0.05)
+        char.shape("ProgramFiles\\Character\\Colin\\Right\\Colin-Right.gif")
     if moveLeft:
-        for i in range(5):
-            char.shape("circle")
-            charX -= step/5
-            char.goto(charX, charY)
-            time.sleep(0.05)
-        if moveLeft:
-            for i in range(5):
-                char.shape("triangle")
+        for i in range(2):
+            for i in range(2):
+                char.shape("ProgramFiles\\Character\\Colin\\Left\\Colin-left-01.gif")
                 charX -= step/5
                 char.goto(charX, charY)
                 time.sleep(0.05)
-    char.shape("square")
+            for i in range(2):
+                char.shape("ProgramFiles\\Character\\Colin\\Left\\Colin-left-02.gif")
+                charX -= step/5
+                char.goto(charX, charY)
+                time.sleep(0.05)
+        char.shape("ProgramFiles\\Character\\Colin\\Left\\Colin-Left.gif")
+    char.clearstamps()
 
 def goUp():
     global moveUp
@@ -86,15 +104,16 @@ def goLeft():
     global moveLeft
     moveLeft = True
     moveUp = False
-def StopUp():
+def stopUp():
     global moveUp
-def StopDown():
+    moveUp = False
+def stopDown():
     global moveDown
-    moveDown - False
-def StopRight():
+    moveDown = False
+def stopRight():
     global moveRight
     moveRight = False
-def StopLeft():
+def stopLeft():
     global moveLeft
     moveLeft = False
 
@@ -104,11 +123,17 @@ def MoveCam(x, y):
     charX += x
     charY += y
 
-goLeft()
+turtle.onkeypress(goUp, "Up")
+turtle.onkeypress(goDown, "Down")
+turtle.onkeypress(goLeft, "Left")
+turtle.onkeypress(goRight, "Right")
 
-MoveCam(100, 100)
+turtle.onkeyrelease(stopUp, "Up")
+turtle.onkeyrelease(stopDown, "Down")
+turtle.onkeyrelease(stopLeft, "Left")
+turtle.onkeyrelease(stopRight, "Right")
+
+turtle.listen()
 
 while True:
     Update()
-    print(charX)
-    print(charY)
