@@ -2,6 +2,7 @@ import turtle
 import time
 
 turtle.bgcolor("black")
+turtle.title("ChangedRM")
 
 moveUp = False
 moveDown = False
@@ -213,4 +214,7 @@ turtle.onkeyrelease(stopRight, "Right")
 turtle.listen()
 
 while True:
-    Update()
+    try:
+        Update()
+    except:
+        break
